@@ -1,6 +1,6 @@
 /**
- * @author Luke Ortlam
- * @version 12.04.2018
+ * @author SaturnHafen
+ * @version 13.04.2018
  * @version 1.2
  */
 public class Rechner
