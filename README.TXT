@@ -6,9 +6,10 @@ alles, was er/sie wissen muss. Üblicherweise sollte der Kommentar
 zumindest die folgenden Angaben umfassen:
 ------------------------------------------------------------------------
 
-PROJEKTBEZEICHNUNG:
+PROJEKTBEZEICHNUNG: Berechnet aus einem Eingabestring das Ergebnis
 PROJEKTZWECK:
-VERSION oder DATUM:
-WIE IST DAS PROJEKT ZU STARTEN:
-AUTOR(EN):
+VERSION oder DATUM: 13.04.2018
+WIE IST DAS PROJEKT ZU STARTEN: 1) new Rechner() -> berechnen(String s)
+                                2) Rechner.main(String[] args);
+AUTOR(EN): SaturnHafen
 BENUTZERHINWEISE:
