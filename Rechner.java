@@ -177,7 +177,7 @@ public class Rechner
     }
 
     private static double parseString(String s) {
-        char zeichen = ' ';
+        char zeichen = add;
         boolean zeichenGefunden = false;
         double result = 0;
         boolean neueRekursion = false;
@@ -211,6 +211,7 @@ public class Rechner
                     result = parseString(s.substring(0 ,zeichenIndex));
                     System.out.println(" <Rekursion beendet> ");
                     neueRekursion = true;
+                    break;
                 } else 
                     ;
             }
@@ -219,7 +220,9 @@ public class Rechner
         else
             try {
                 zahlA = Double.parseDouble(s.substring(0, zeichenIndex));
-            } catch(java.lang.NumberFormatException e) { }
+            } catch(java.lang.NumberFormatException e) { 
+            } catch(java.lang.StringIndexOutOfBoundsException e) {
+            }
         try {
             zahlB = Double.parseDouble(s.substring(zeichenIndex +1));
         } catch(java.lang.NumberFormatException e) { }
