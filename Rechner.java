@@ -176,9 +176,13 @@ public class Rechner
         }
     }
 
-    private static String parseString(String s) {
+    private static double parseString(String s) {
         char zeichen = ' ';
         boolean zeichenGefunden = false;
+        double result = 0;
+        boolean neueRekursion = false;
+        double zahlA = 0;
+        double zahlB = 0;
         int zeichenIndex = -1;
         s = s.replace(" ", "");
         for(int i = s.length() -1; i >= 0; i--)
@@ -203,30 +207,24 @@ public class Rechner
                     ;
             else {
                 if(s.charAt(i) == add || s.charAt(i) == subtract || s.charAt(i) == multiply || s.charAt(i) == divide) {
-                    System.out.println(" <Neue Rekursion>");
-                    String temp = parseString(s.substring(0 ,zeichenIndex));
-                    s = temp + s.substring(zeichenIndex);
+                    System.out.println(" <Neue Rekursion> ");
+                    result = parseString(s.substring(0 ,zeichenIndex));
+                    System.out.println(" <Rekursion beendet> ");
+                    neueRekursion = true;
                 } else 
                     ;
             }
-        double zahlA = 0;
-        double zahlB = 0;
-
-        try {
-            s.charAt(zeichenIndex);
-        } catch(java.lang.StringIndexOutOfBoundsException e) {
-            System.out.println(" >>> " + s + " = " + s);
-            return s;
-        }
-
-        try {
-            zahlA = Double.parseDouble(s.substring(0, zeichenIndex));
-        } catch(java.lang.NumberFormatException e) { }
+        if(neueRekursion)
+            zahlA = result;
+        else
+            try {
+                zahlA = Double.parseDouble(s.substring(0, zeichenIndex));
+            } catch(java.lang.NumberFormatException e) { }
         try {
             zahlB = Double.parseDouble(s.substring(zeichenIndex +1));
         } catch(java.lang.NumberFormatException e) { }
         System.out.println(" >>> " + zahlA + " " + zeichen + " " + zahlB + " = " + berechnen(zahlA, zahlB, zeichen));
-        return "" + berechnen(zahlA, zahlB, zeichen);
+        return berechnen(zahlA, zahlB, zeichen);
     }
 
     /**
