@@ -25,7 +25,7 @@ public class Berechnung
         int lastOperatorIndex = index;
         int operatorIndex = 0;
         boolean firstOperator = true;
-
+        
         while(index < string.length() && string.charAt(index) != Main.closing) {
             if(string.charAt(index) == Main.opening) {
                 index++;
@@ -47,7 +47,7 @@ public class Berechnung
                 }
             }
             if(string.charAt(index) == Main.add || string.charAt(index) == Main.subtract 
-                || string.charAt(index) == Main.multiply || string.charAt(index) == Main.divide) {
+            || string.charAt(index) == Main.multiply || string.charAt(index) == Main.divide) {
                 if(firstOperator) {
                     try {
                         result = Double.parseDouble(string.substring(lastOperatorIndex, index));
@@ -67,7 +67,14 @@ public class Berechnung
             }
             index++;
         }
-        if(operatorIndex < string.length()) {
+        if(firstOperator) {
+            try {
+                System.out.println(" >>> " + string.substring(lastOperatorIndex, index));
+                return Double.parseDouble(string.substring(lastOperatorIndex, index));
+            } catch (java.lang.NumberFormatException e) {
+                return 0;
+            }
+        } else if(operatorIndex < string.length()) {
             a = result;
             b = 0;
             try {
@@ -79,13 +86,13 @@ public class Berechnung
     }
 
     private static double berechnen(double a, double b, char operation) {
-        System.out.println(" >>> " + a + "  " + operation + " " + b + " = ???" );
+        System.out.print(" >>> " + a + "  " + operation + " " + b + " = " );
         switch(operation) {
-            case Main.add        : return a + b;
-            case Main.subtract   : return a - b;
-            case Main.multiply   : return a * b;
-            case Main.divide     : return a / b;
-            default              : return 0;
+            case Main.add        : System.out.println(a+b); return a + b;
+            case Main.subtract   : System.out.println(a-b); return a - b;
+            case Main.multiply   : System.out.println(a*b); return a * b;
+            case Main.divide     : System.out.println(a/b); return a / b;
+            default              : System.out.println(0)  ; return 0;
         }
     }
 }
