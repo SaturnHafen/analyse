@@ -1,3 +1,4 @@
+
 /**
  * Beschreiben Sie hier die Klasse Berechnung.
  * 
@@ -24,8 +25,8 @@ public class Berechnung
 
         int lastOperatorIndex = index;
         int operatorIndex = 0;
-        boolean firstOperator = true;
-        
+        boolean firstOperator = true;;
+
         while(index < string.length() && string.charAt(index) != Main.closing) {
             if(string.charAt(index) == Main.opening) {
                 index++;
@@ -75,12 +76,15 @@ public class Berechnung
                 return 0;
             }
         } else if(operatorIndex < string.length()) {
-            a = result;
-            b = 0;
-            try {
-                b = Double.parseDouble(string.substring(operatorIndex +1, index));
-            } catch(java.lang.NumberFormatException e) { }
-            result = berechnen(a,b,string.charAt(operatorIndex));
+            if(string.charAt(operatorIndex) != Main.closing) {
+                a = result;
+                b = 0;
+                System.out.println(string.substring(operatorIndex +1, index));
+                try {
+                    b = Double.parseDouble(string.substring(operatorIndex +1, index));
+                } catch(java.lang.NumberFormatException e) { }
+                result = berechnen(a,b,string.charAt(operatorIndex));
+            }
         }
         return result;
     }
