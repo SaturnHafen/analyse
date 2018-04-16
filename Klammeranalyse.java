@@ -44,6 +44,7 @@ public class Klammeranalyse {
     }
 
     private static void error(String s, int index, String errorMsg) {
+        System.err.println();
         System.err.println(" > " + s);
         System.err.print("   ");
         for(int i = 0; i < index; i++)
