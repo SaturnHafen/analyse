@@ -33,23 +33,23 @@ public class Klammeranalyse {
                 if(anzahl > 0)
                     anzahl--;
                 else {
-                    error(s, i, "Expected '(' before ')' ");
+                    error(s, i, "Expected '(' before ')' ", System.err);
                     return false;
                 }
         }
         if(anzahl == 0)
             return true;
-        error(s, s.length(), "Expected ')' before '' ");
+        error(s, s.length(), "Expected ')' before '' ", System.err);
         return false;
     }
 
-    private static void error(String s, int index, String errorMsg) {
-        System.err.println();
-        System.err.println(" > " + s);
-        System.err.print("   ");
+    private static void error(String s, int index, String errorMsg, java.io.PrintStream ps) {
+        ps.println();
+        ps.println(" > " + s);
+        ps.print("   ");
         for(int i = 0; i < index; i++)
-            System.err.print(' ');
-        System.err.println('^');
-        System.err.println("   " + errorMsg);
+            ps.print(' ');
+        ps.println('^');
+        ps.println("   " + errorMsg);
     }
 }
