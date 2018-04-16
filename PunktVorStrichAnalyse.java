@@ -8,31 +8,36 @@ public class PunktVorStrichAnalyse
 {
     private static String string;
     private static int index;
+    private static int rekursionsTiefe;
 
     private PunktVorStrichAnalyse() { }
 
     public static String analysieren(String s) {
         string = s;
         index = 0;
+        rekursionsTiefe = 0;
+        System.out.println();
+        System.out.println(" ----------Punkt- vor Strichanalyse----------");
         rekursivPruefen();
-        System.out.println(" >>> " + string);
+        System.out.println(" ------Punkt- vor Strichanalyse fertig-------");
         return string;
     }
 
     private static void rekursivPruefen() {
-        int lastOperatorIndex = index;
+        rekursionsTiefe++;
+        int lastOperatorIndex = index -1;
         boolean operatorFound = false;
         while(index < string.length() && string.charAt(index) != Main.closing) {
             if(string.charAt(index) == Main.opening) {
                 index++;
-                System.out.println(" <neue Rekursion> ");
+                printFormattedMessage(" <neue Rekursion> ");
                 rekursivPruefen();
-                System.out.println(" <Rekursion beendet> ");
+                printFormattedMessage(" <Rekursion beendet> ");
             } else if(string.charAt(index) == Main.add || string.charAt(index) == Main.subtract) {
                 if(operatorFound) {
                     if(lastOperatorIndex == 0)
                         lastOperatorIndex--;
-                    System.out.println(" <Klammern um> " + string.substring(lastOperatorIndex +1, index));
+                    printFormattedMessage(" <" + string.substring(lastOperatorIndex +1, index) + "> ");
                     klammernEinfuegen(lastOperatorIndex +1, index);
                     operatorFound = false;
                 } else {
@@ -47,9 +52,11 @@ public class PunktVorStrichAnalyse
         if(operatorFound) {
             if(lastOperatorIndex == 0)
                 lastOperatorIndex--;
-            System.out.println(" <Klammern um> " + string.substring(lastOperatorIndex +1, index));
+            printFormattedMessage(" <" + string.substring(lastOperatorIndex +1, index) + "> ");
             klammernEinfuegen(lastOperatorIndex +1, index);
         }
+        index += 2;
+        rekursionsTiefe--;
     }
 
     private static void klammernEinfuegen(int start, int stop) { // start inklusive, stop exklusive
@@ -60,8 +67,13 @@ public class PunktVorStrichAnalyse
         String mitte = string.substring(start, stop);
         String ende = string.substring(stop);
 
-        System.out.println(anfang + " | " + mitte + " | " + ende);
-
         string = anfang + Main.opening + mitte + Main.closing + ende;
+    }
+
+    private static void printFormattedMessage(String msg) {
+        System.out.print(" > ");
+        for(int i = 1; i < rekursionsTiefe; i++)
+            System.out.print(" | ");
+        System.out.println(msg);
     }
 }

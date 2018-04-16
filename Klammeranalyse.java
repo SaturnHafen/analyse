@@ -1,8 +1,19 @@
 public class Klammeranalyse {
-    
+
     private Klammeranalyse() { }
 
-    public static boolean analysiere(String s) {
+    public static boolean analysieren(String s) {
+        boolean result;
+        System.out.println();
+        System.out.println(" ---------------Klammeranalyse---------------");
+        result = klammerAnalyse(s);
+        if(result)
+            System.out.println(" > Erfolgreich");
+        System.out.println(" ------------Klammeranalyse fertig-----------");
+        return result;
+    }
+
+    private static boolean klammerAnalyse(String s) {
         int anzahl = 0;
         for(int i = 0; i < s.length(); i++) {
             if(s.charAt(i) == Main.opening)
@@ -10,11 +21,23 @@ public class Klammeranalyse {
             else if(s.charAt(i) == Main.closing)
                 if(anzahl > 0)
                     anzahl--;
-                else
+                else {
+                    error(s, i, "Expected '(' before ')' ");
                     return false;
+                }
         }
         if(anzahl == 0)
             return true;
+        error(s, s.length(), "Expected ')' before '' ");
         return false;
+    }
+
+    private static void error(String s, int index, String errorMsg) {
+        System.out.println(" > " + s);
+        System.out.print(" > ");
+        for(int i = 0; i < index; i++)
+            System.out.print(' ');
+        System.out.println('^');
+        System.out.println(" > " + errorMsg);
     }
 }

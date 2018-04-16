@@ -16,14 +16,16 @@ public class Main
     private Main() { }
 
     public static double analysierenUndBerechnen(String s) {
-        System.out.println(" >>> " + s);
-        if(Klammeranalyse.analysiere(s)) {
-             s = PunktVorStrichAnalyse.analysieren(s);
-            return Berechnung.berechnen(s);
-        } else {
-            System.out.println(" >>> Ungültige Klammeranzahl");
-            return 0;
-        }
+        double result;
+        long timeStamp = System.currentTimeMillis();
+        if(Klammeranalyse.analysieren(s)) {
+            s = PunktVorStrichAnalyse.analysieren(s);
+            result = Berechnung.berechnen(s);
+        } else
+            result = 0;
+        System.out.println();
+        System.out.println(" > verstrichene Zeit : " + (System.currentTimeMillis() - timeStamp) + " ms");
+        return result;
     }
 
     public static void main(String[] args) {
@@ -34,5 +36,5 @@ public class Main
             System.out.println(args[i]);
 
         System.out.println(analysierenUndBerechnen(args[0]));
-     }
+    }
 }

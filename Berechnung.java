@@ -9,16 +9,24 @@ public class Berechnung
 {
     private static String string;
     private static int index;
+    private static int rekursionsTiefe;
 
     private Berechnung() { return; }
 
     public static double berechnen(String s) {
         string = s;
         index = 0;
-        return rekursivPruefen();
+        rekursionsTiefe = 0;
+        double result;
+        System.out.println();
+        System.out.println(" -----------------Berechnung-----------------");
+        result = rekursivPruefen();
+        System.out.println(" -------------Berechnung fertig--------------");
+        return result;
     }
 
     private static double rekursivPruefen() {
+        rekursionsTiefe++;
         double a = 0;
         double b = 0;
         double result = 0;
@@ -30,9 +38,9 @@ public class Berechnung
         while(index < string.length() && string.charAt(index) != Main.closing) {
             if(string.charAt(index) == Main.opening) {
                 index++;
-                System.out.println(" <neue Rekursion> ");
+                printFormattedMessage(" <neue Rekursion> ");
                 double tempResult = rekursivPruefen();
-                System.out.println(" <Rekursion beendet> ");
+                printFormattedMessage(" <Rekursion beendet> ");
                 if(firstOperator) {
                     result = tempResult;
                     firstOperator = false;
@@ -84,17 +92,24 @@ public class Berechnung
                 result = berechnen(a,b,string.charAt(operatorIndex));
             }
         }
+        rekursionsTiefe--;
         return result;
     }
 
     private static double berechnen(double a, double b, char operation) {
-        System.out.print(" >>> " + a + "  " + operation + " " + b + " = " );
         switch(operation) {
-            case Main.add        : System.out.println(a+b); return a + b;
-            case Main.subtract   : System.out.println(a-b); return a - b;
-            case Main.multiply   : System.out.println(a*b); return a * b;
-            case Main.divide     : System.out.println(a/b); return a / b;
-            default              : System.out.println(0)  ; return 0;
+            case Main.add        : printFormattedMessage(a + "  " + operation + " " + b + " = " + (a+b)); return a + b;
+            case Main.subtract   : printFormattedMessage(a + "  " + operation + " " + b + " = " + (a-b)); return a - b;
+            case Main.multiply   : printFormattedMessage(a + "  " + operation + " " + b + " = " + (a*b)); return a * b;
+            case Main.divide     : printFormattedMessage(a + "  " + operation + " " + b + " = " + (a/b)); return a / b;
+            default              : printFormattedMessage(a + "  " + operation + " " + b + " = ???")     ; return 0;
         }
+    }
+
+    private static void printFormattedMessage(String msg) {
+        System.out.print(" > ");
+        for(int i = 1; i < rekursionsTiefe; i++)
+            System.out.print(" | ");
+        System.out.println(msg);
     }
 }
