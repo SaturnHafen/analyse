@@ -26,6 +26,7 @@ public class PunktVorStrichAnalyse
                 index++;
                 System.out.println(" <neue Rekursion> ");
                 rekursivPruefen();
+                System.out.println(" <Rekursion beendet> ");
             } else if(string.charAt(index) == Main.add || string.charAt(index) == Main.subtract) {
                 if(operatorFound) {
                     System.out.println(string.substring(lastOperatorIndex, index));

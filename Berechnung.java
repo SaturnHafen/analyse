@@ -24,7 +24,7 @@ public class Berechnung
         double result = 0;
 
         int lastOperatorIndex = index;
-        int operatorIndex = 0;
+        Integer operatorIndex = 0;
         boolean firstOperator = true;;
 
         while(index < string.length() && string.charAt(index) != Main.closing) {
@@ -38,12 +38,14 @@ public class Berechnung
                     firstOperator = false;
                     index++;
                     operatorIndex = index;
+                    index++;
                     continue;
                 } else {
                     a = result;
                     result = berechnen(a, tempResult, string.charAt(operatorIndex));
                     index++;
                     operatorIndex = index;
+                    index++;
                     continue;
                 }
             }
@@ -70,7 +72,6 @@ public class Berechnung
         }
         if(firstOperator) {
             try {
-                System.out.println(" >>> " + string.substring(lastOperatorIndex, index));
                 return Double.parseDouble(string.substring(lastOperatorIndex, index));
             } catch (java.lang.NumberFormatException e) {
                 return 0;
@@ -79,7 +80,6 @@ public class Berechnung
             if(string.charAt(operatorIndex) != Main.closing) {
                 a = result;
                 b = 0;
-                System.out.println(string.substring(operatorIndex +1, index));
                 try {
                     b = Double.parseDouble(string.substring(operatorIndex +1, index));
                 } catch(java.lang.NumberFormatException e) { }
