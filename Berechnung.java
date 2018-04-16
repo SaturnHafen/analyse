@@ -98,11 +98,11 @@ public class Berechnung
 
     private static double berechnen(double a, double b, char operation) {
         switch(operation) {
-            case Main.add        : printFormattedMessage(a + "  " + operation + " " + b + " = " + (a+b)); return a + b;
-            case Main.subtract   : printFormattedMessage(a + "  " + operation + " " + b + " = " + (a-b)); return a - b;
-            case Main.multiply   : printFormattedMessage(a + "  " + operation + " " + b + " = " + (a*b)); return a * b;
-            case Main.divide     : printFormattedMessage(a + "  " + operation + " " + b + " = " + (a/b)); return a / b;
-            default              : printFormattedMessage(a + "  " + operation + " " + b + " = ???")     ; return 0;
+            case Main.add        : printFormattedMessage("" + a + ' ' + operation + ' ' + b + " = " + (a+b)); return a + b;
+            case Main.subtract   : printFormattedMessage("" + a + ' ' + operation + ' ' + b + " = " + (a-b)); return a - b;
+            case Main.multiply   : printFormattedMessage("" + a + ' ' + operation + ' ' + b + " = " + (a*b)); return a * b;
+            case Main.divide     : printFormattedMessage("" + a + ' ' + operation + ' ' + b + " = " + (a/b)); return a / b;
+            default              : printFormattedMessage("" + a + ' ' + operation + ' ' + b + " = ???")     ; return 0;
         }
     }
 
