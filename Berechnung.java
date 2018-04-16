@@ -28,6 +28,7 @@ public class Berechnung
         boolean firstOperator = true;;
 
         while(index < string.length() && string.charAt(index) != Main.closing) {
+            System.out.println(string.charAt(index));
             if(string.charAt(index) == Main.opening) {
                 index++;
                 System.out.println(" <neue Rekursion> ");
@@ -36,14 +37,12 @@ public class Berechnung
                 if(firstOperator) {
                     result = tempResult;
                     firstOperator = false;
-                    index++;
                     operatorIndex = index;
                     index++;
                     continue;
                 } else {
                     a = result;
                     result = berechnen(a, tempResult, string.charAt(operatorIndex));
-                    index++;
                     operatorIndex = index;
                     index++;
                     continue;
@@ -88,6 +87,7 @@ public class Berechnung
                 result = berechnen(a,b,string.charAt(operatorIndex));
             }
         }
+        StringDebugger.debug(string, index, System.out);
         return result;
     }
 
