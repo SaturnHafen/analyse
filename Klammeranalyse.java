@@ -1,7 +1,16 @@
+/**
+ * @author SaturnHafen
+ * @version 16.04.2018
+ */
 public class Klammeranalyse {
 
     private Klammeranalyse() { }
 
+    /**
+     * Prüft, ob der Eingabestring _s_ genausoviele öffnende wie schließende Klammern beinhaltet
+     * @param s Der zu analysierende String
+     * @return Gleiche Anzahl
+     */
     public static boolean analysieren(String s) {
         boolean result;
         System.out.println();

@@ -1,8 +1,6 @@
 /**
- * Beschreiben Sie hier die Klasse PunktVorStrichAnalyse.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author SaturnHafen
+ * @version 16.04.2018
  */
 public class PunktVorStrichAnalyse
 {
@@ -12,6 +10,12 @@ public class PunktVorStrichAnalyse
 
     private PunktVorStrichAnalyse() { }
 
+    /**
+     * Prüft den Eingabestring _s_ auf priorisierte Rechenzeichen ['*','/'] und 
+     * gewährleistet durch Klammern die richtige Ausführungsreihenfolge
+     * @param s Der zu analysierende String
+     * @return Der neue String mit Klammern
+     */
     public static String analysieren(String s) {
         string = s;
         index = 0;

@@ -1,9 +1,6 @@
-
 /**
- * Beschreiben Sie hier die Klasse Berechnung.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author SaturnHafen
+ * @version 16.04.2018
  */
 public class Berechnung
 {
@@ -13,6 +10,11 @@ public class Berechnung
 
     private Berechnung() { return; }
 
+    /**
+     * Berechnet das Ergebnis aus dem Eingabestring _s_ [Klammern haben Priorität]
+     * @param s Der String, der analysiert werden soll
+     * @return Das Ergebnis
+     */
     public static double berechnen(String s) {
         string = s;
         index = 0;
