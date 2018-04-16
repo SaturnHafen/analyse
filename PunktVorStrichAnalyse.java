@@ -11,11 +11,12 @@ public class PunktVorStrichAnalyse
 
     private PunktVorStrichAnalyse() { }
 
-    public static void analysieren(String s) {
+    public static String analysieren(String s) {
         string = s;
         index = 0;
         rekursivPruefen();
         System.out.println(" >>> " + string);
+        return string;
     }
 
     private static void rekursivPruefen() {
@@ -29,12 +30,11 @@ public class PunktVorStrichAnalyse
                 System.out.println(" <Rekursion beendet> ");
             } else if(string.charAt(index) == Main.add || string.charAt(index) == Main.subtract) {
                 if(operatorFound) {
-                    System.out.println(string.substring(lastOperatorIndex +1, index));
+                    System.out.println(" <Klammern um> " + string.substring(lastOperatorIndex +1, index));
                     klammernEinfuegen(lastOperatorIndex +1, index);
                     operatorFound = false;
                 } else {
                     lastOperatorIndex = index;
-                    //StringDebugger.debug(string, lastOperatorIndex, System.out);
                 }
             }
             else if(string.charAt(index) == Main.multiply || string.charAt(index) == Main.divide) {
@@ -43,10 +43,8 @@ public class PunktVorStrichAnalyse
             index++;
         }
         if(operatorFound) {
-            System.out.println(" > " + string.substring(lastOperatorIndex, index));
+            System.out.println(" > " + string.substring(lastOperatorIndex +1, index));
             klammernEinfuegen(lastOperatorIndex +1, index);
-            StringDebugger.debug(string, lastOperatorIndex +1, System.out);
-            StringDebugger.debug(string, index, System.out);
         }
     }
     

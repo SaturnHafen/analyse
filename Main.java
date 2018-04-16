@@ -18,7 +18,7 @@ public class Main
     public static double analysierenUndBerechnen(String s) {
         System.out.println(" >>> " + s);
         if(Klammeranalyse.analysiere(s)) {
-            PunktVorStrichAnalyse.analysieren(s);
+             s = PunktVorStrichAnalyse.analysieren(s);
             return Berechnung.berechnen(s);
         } else {
             System.out.println(" >>> Ungültige Klammeranzahl");
