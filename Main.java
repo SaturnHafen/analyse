@@ -18,8 +18,15 @@ public class Main
     public static double analysierenUndBerechnen(String s) {
         double result;
         long timeStamp = System.currentTimeMillis();
+        System.out.println();
+        System.out.println(" > " + s);
         if(Klammeranalyse.analysieren(s)) {
+            System.out.println();
+            System.out.println(" > " + s);
             s = PunktVorStrichAnalyse.analysieren(s);
+
+            System.out.println();
+            System.out.println(" > " + s);
             result = Berechnung.berechnen(s);
         } else
             result = 0;
@@ -29,8 +36,10 @@ public class Main
     }
 
     public static void main(String[] args) {
-        if(args.length == 0)
+        if(args.length == 0) {
+            System.out.println("Formel angeben!");
             return;
+        }
 
         for(int i = 1; i < args.length; i++)
             System.out.println(args[i]);
