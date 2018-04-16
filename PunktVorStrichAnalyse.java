@@ -30,6 +30,8 @@ public class PunktVorStrichAnalyse
                 System.out.println(" <Rekursion beendet> ");
             } else if(string.charAt(index) == Main.add || string.charAt(index) == Main.subtract) {
                 if(operatorFound) {
+                    if(lastOperatorIndex == 0)
+                        lastOperatorIndex--;
                     System.out.println(" <Klammern um> " + string.substring(lastOperatorIndex +1, index));
                     klammernEinfuegen(lastOperatorIndex +1, index);
                     operatorFound = false;
@@ -43,19 +45,23 @@ public class PunktVorStrichAnalyse
             index++;
         }
         if(operatorFound) {
-            System.out.println(" > " + string.substring(lastOperatorIndex +1, index));
+            if(lastOperatorIndex == 0)
+                lastOperatorIndex--;
+            System.out.println(" <Klammern um> " + string.substring(lastOperatorIndex +1, index));
             klammernEinfuegen(lastOperatorIndex +1, index);
         }
     }
-    
+
     private static void klammernEinfuegen(int start, int stop) { // start inklusive, stop exklusive
         if(start > stop || stop > string.length() || start > string.length())
             return;
-            
+
         String anfang = string.substring(0, start);
         String mitte = string.substring(start, stop);
         String ende = string.substring(stop);
-        
+
+        System.out.println(anfang + " | " + mitte + " | " + ende);
+
         string = anfang + Main.opening + mitte + Main.closing + ende;
     }
 }
