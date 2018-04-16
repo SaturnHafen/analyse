@@ -29,12 +29,13 @@ public class PunktVorStrichAnalyse
                 System.out.println(" <Rekursion beendet> ");
             } else if(string.charAt(index) == Main.add || string.charAt(index) == Main.subtract) {
                 if(operatorFound) {
-                    System.out.println(string.substring(lastOperatorIndex, index));
-                    //TODO -> COMPILE
-                    klammernEinfuegen(lastOperatorIndex, index);
+                    System.out.println(string.substring(lastOperatorIndex +1, index));
+                    klammernEinfuegen(lastOperatorIndex +1, index);
                     operatorFound = false;
-                } else
+                } else {
                     lastOperatorIndex = index;
+                    //StringDebugger.debug(string, lastOperatorIndex, System.out);
+                }
             }
             else if(string.charAt(index) == Main.multiply || string.charAt(index) == Main.divide) {
                 operatorFound = true;
@@ -43,8 +44,9 @@ public class PunktVorStrichAnalyse
         }
         if(operatorFound) {
             System.out.println(" > " + string.substring(lastOperatorIndex, index));
-            //TODO -> COMPILE
-            klammernEinfuegen(lastOperatorIndex, index);
+            klammernEinfuegen(lastOperatorIndex +1, index);
+            StringDebugger.debug(string, lastOperatorIndex +1, System.out);
+            StringDebugger.debug(string, index, System.out);
         }
     }
     

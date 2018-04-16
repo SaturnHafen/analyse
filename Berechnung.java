@@ -60,13 +60,15 @@ public class Berechnung
                     index++;
                     continue;
                 }
-                a = result;
-                b = 0;
-                try {
-                    b = Double.parseDouble(string.substring(operatorIndex +1, index));
-                } catch(java.lang.NumberFormatException e) { }
-                result = berechnen(a, b, string.charAt(operatorIndex));
-                operatorIndex = index;
+                if(string.charAt(operatorIndex) != Main.closing) {
+                    a = result;
+                    b = 0;
+                    try {
+                        b = Double.parseDouble(string.substring(operatorIndex +1, index));
+                    } catch(java.lang.NumberFormatException e) { }
+                    result = berechnen(a, b, string.charAt(operatorIndex));
+                    operatorIndex = index;
+                }
             }
             index++;
         }
