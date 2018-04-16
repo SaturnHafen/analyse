@@ -29,15 +29,14 @@ public class Main
     public static double analysierenUndBerechnen(String s) {
         double result;
         long timeStamp = System.currentTimeMillis();
-        System.out.println();
-        System.out.println(" > " + s);
+        //System.out.println();
+        //System.out.println(" > " + s);
         if(Klammeranalyse.analysieren(s)) {
-            System.out.println();
-            System.out.println(" > " + s);
+            //System.out.println();
+            //System.out.println(" > " + s);
             s = PunktVorStrichAnalyse.analysieren(s);
-
-            System.out.println();
-            System.out.println(" > " + s);
+            //System.out.println();
+            //System.out.println(" > " + s);
             result = Berechnung.berechnen(s);
         } else
             result = 0;
@@ -46,6 +45,9 @@ public class Main
         return result;
     }
 
+    /**
+     * Startet eine neue Analyse mit args[0] als Parameter
+     */
     public static void main(String[] args) {
         if(args.length == 0) {
             System.out.println("Formel angeben!");

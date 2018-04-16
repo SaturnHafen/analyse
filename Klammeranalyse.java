@@ -18,6 +18,8 @@ public class Klammeranalyse {
         result = klammerAnalyse(s);
         if(result)
             System.out.println(" > Erfolgreich");
+        else
+            System.out.println(" > Fehler");
         System.out.println(" ------------Klammeranalyse fertig-----------");
         return result;
     }
@@ -42,11 +44,11 @@ public class Klammeranalyse {
     }
 
     private static void error(String s, int index, String errorMsg) {
-        System.out.println(" > " + s);
-        System.out.print(" > ");
+        System.err.println(" > " + s);
+        System.err.print("   ");
         for(int i = 0; i < index; i++)
-            System.out.print(' ');
-        System.out.println('^');
-        System.out.println(" > " + errorMsg);
+            System.err.print(' ');
+        System.err.println('^');
+        System.err.println("   " + errorMsg);
     }
 }
