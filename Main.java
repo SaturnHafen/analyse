@@ -29,18 +29,13 @@ public class Main
     public static double analysierenUndBerechnen(String s) {
         double result;
         long timeStamp = System.currentTimeMillis();
-        //System.out.println();
-        //System.out.println(" > " + s);
         if(Klammeranalyse.analysieren(s)) {
-            //System.out.println();
-            //System.out.println(" > " + s);
             s = PunktVorStrichAnalyse.analysieren(s);
-            //System.out.println();
-            //System.out.println(" > " + s);
             result = Berechnung.berechnen(s);
         } else
             result = 0;
         System.out.println();
+        System.out.println(" > Berechnung : " + s + " = " + result);
         System.out.println(" > verstrichene Zeit : " + (System.currentTimeMillis() - timeStamp) + " ms");
         return result;
     }
