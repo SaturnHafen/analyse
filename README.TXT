@@ -11,5 +11,5 @@ PROJEKTZWECK:
 VERSION oder DATUM: 13.04.2018
 WIE IST DAS PROJEKT ZU STARTEN: 1) new Rechner() -> berechnen(String s)
                                 2) Rechner.main(String[] args);
-AUTOR(EN): SaturnHafen
+AUTOR(EN): Luke
 BENUTZERHINWEISE:
