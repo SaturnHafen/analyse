@@ -44,6 +44,7 @@ public class PunktVorStrichAnalyse
                     printFormattedMessage(" <" + string.substring(lastOperatorIndex +1, index) + "> ");
                     klammernEinfuegen(lastOperatorIndex +1, index);
                     operatorFound = false;
+                    index += 2;
                 } else {
                     lastOperatorIndex = index;
                 }
@@ -58,8 +59,8 @@ public class PunktVorStrichAnalyse
                 lastOperatorIndex--;
             printFormattedMessage(" <" + string.substring(lastOperatorIndex +1, index) + "> ");
             klammernEinfuegen(lastOperatorIndex +1, index);
+            index += 2;
         }
-        index += 2;
         rekursionsTiefe--;
     }
 
