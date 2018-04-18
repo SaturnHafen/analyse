@@ -1,6 +1,6 @@
 /**
- * @author SaturnHafen
- * @version 16.04.2018
+ * @author Luke
+ * @version 18.04.2018
  */
 public class Main
 {
@@ -16,14 +16,14 @@ public class Main
     public static final char multiply   = '*';
     /** Das Dividierzeichen */
     public static final char divide     = '/';
-    
+    /** Erlaubte Zeichen */
     public static final char[] chars = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/'};
 
     private Main() { }
 
     /**
-     * Analysiert den Eingabestring _s_, ob die Anzahl der öffnenden und schließenden Klammern gleich sind, 
-     * setzt neue Klammern zur gewährleistung der Punkt- vor Strichrechnung und 
+     * Analysiert den Eingabestring _s_, ob die Anzahl der öffnenden und schließenden Klammern gleich sind, </br>
+     * setzt neue Klammern zur gewährleistung der Punkt- vor Strichrechnung und </br>
      * berechnet schlussendlich das Ergebnis 
      *  [!!]Es wird nicht auf ungültige Zeichen geprüft, dies führt möglicherweise zu Fehlern im Rechenprozess[!!]
      * @param s Der zu analysierende String
@@ -42,10 +42,10 @@ public class Main
         System.out.println(" > verstrichene Zeit : " + (System.currentTimeMillis() - timeStamp) + " ms");
         return result;
     }
-    
+
     /**
-     * Analysiert den Eingabestring _s_, ob die Anzahl der öffnenden und schließenden Klammern gleich sind, 
-     * setzt neue Klammern zur gewährleistung der Punkt- vor Strichrechnung und 
+     * Analysiert den Eingabestring _s_, ob die Anzahl der öffnenden und schließenden Klammern gleich sind, </br>
+     * setzt neue Klammern zur gewährleistung der Punkt- vor Strichrechnung und </br>
      * berechnet schlussendlich das Ergebnis
      * @param s Der zu analysierende String
      * @param forceCheck Soll der eingegebene String auf ungültige Zeichen untersucht werden
@@ -66,17 +66,20 @@ public class Main
     }
 
     /**
-     * Startet eine neue Analyse mit args[0] als Parameter
+     * Benutzung:
+     * @param args <ul>
+     *              <li> <[String] Formel> </li>
+     *              <li> <[String] Formel> <[Boolean] forceCheck> </li>
+     *             </ul>
      */
     public static void main(String[] args) {
         if(args.length == 0) {
             System.out.println("Formel angeben!");
             return;
         }
-
-        for(int i = 1; i < args.length; i++)
-            System.out.println(args[i]);
-
-        System.out.println(analysierenUndBerechnen(args[0]));
+        if(args.length == 1)
+            System.out.println(analysierenUndBerechnen(args[0]));
+        else if(args.length == 2)
+            System.out.println(analysierenUndBerechnen(args[0], Boolean.parseBoolean(args[1])));
     }
 }

@@ -1,6 +1,7 @@
 /**
- * @author SaturnHafen
- * @version 16.04.2018
+ * Gewährleistet die Punkt- vor Strichrechnung, indem Klammern gesetzt werden
+ * @author Luke
+ * @version 18.04.2018
  */
 public class PunktVorStrichAnalyse
 {

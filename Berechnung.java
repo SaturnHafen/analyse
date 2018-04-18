@@ -1,6 +1,7 @@
 /**
- * @author SaturnHafen
- * @version 16.04.2018
+ * Berechnet aus dem eingegebenen String [Rechenausdruck] das Ergebnis
+ * @author Luke
+ * @version 18.04.2018
  */
 public class Berechnung
 {

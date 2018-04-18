@@ -1,13 +1,14 @@
 /**
+ * Prüft, ob der Eingabestring ein gültiger Rechenausdruck ist
  * @author Luke
- * @version 16.04.2018
+ * @version 18.04.2018
  */
 public class Klammeranalyse {
 
     private Klammeranalyse() { }
 
     /**
-     * Prüft, ob der Eingabestring _s_ genausoviele öffnende wie schließende Klammern beinhaltet
+     * Prüft, ob der Eingabestring _s_ genausoviele öffnende wie schließende Klammern beinhaltet </br>
      *  [!!]Es wird nicht auf ungültige Zeichen geprüft, dies führt möglicherweise zu Fehlern im Rechenprozess[!!]
      * @param s Der zu analysierende String
      * @return Gleiche Anzahl
