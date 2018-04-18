@@ -78,13 +78,13 @@ public class Berechnung
             }
             index++;
         }
-        if(firstOperator) {
+        if(firstOperator)
             try {
                 return Double.parseDouble(string.substring(lastOperatorIndex, index));
             } catch (java.lang.NumberFormatException e) {
                 return 0;
             }
-        } else if(operatorIndex < string.length()) {
+        else if(operatorIndex < string.length())
             if(string.charAt(operatorIndex) != Main.closing) {
                 a = result;
                 b = 0;
@@ -93,7 +93,6 @@ public class Berechnung
                 } catch(java.lang.NumberFormatException e) { }
                 result = berechnen(a,b,string.charAt(operatorIndex));
             }
-        }
         rekursionsTiefe--;
         return result;
     }

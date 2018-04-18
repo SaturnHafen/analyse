@@ -16,6 +16,8 @@ public class Main
     public static final char multiply   = '*';
     /** Das Dividierzeichen */
     public static final char divide     = '/';
+    
+    public static final char[] chars = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/'};
 
     private Main() { }
 

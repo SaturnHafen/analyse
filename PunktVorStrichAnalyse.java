@@ -37,7 +37,7 @@ public class PunktVorStrichAnalyse
                 printFormattedMessage(" <neue Rekursion> ");
                 rekursivPruefen();
                 printFormattedMessage(" <Rekursion beendet> ");
-            } else if(string.charAt(index) == Main.add || string.charAt(index) == Main.subtract) {
+            } else if(string.charAt(index) == Main.add || string.charAt(index) == Main.subtract)
                 if(operatorFound) {
                     if(lastOperatorIndex == 0)
                         lastOperatorIndex--;
@@ -45,13 +45,10 @@ public class PunktVorStrichAnalyse
                     klammernEinfuegen(lastOperatorIndex +1, index);
                     operatorFound = false;
                     index += 2;
-                } else {
+                } else
                     lastOperatorIndex = index;
-                }
-            }
-            else if(string.charAt(index) == Main.multiply || string.charAt(index) == Main.divide) {
+            else if(string.charAt(index) == Main.multiply || string.charAt(index) == Main.divide)
                 operatorFound = true;
-            }
             index++;
         }
         if(operatorFound) {

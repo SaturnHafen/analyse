@@ -1,5 +1,5 @@
 /**
- * @author SaturnHafen
+ * @author Luke
  * @version 16.04.2018
  */
 public class Klammeranalyse {
@@ -36,6 +36,18 @@ public class Klammeranalyse {
                     error(s, i, "Expected '(' before ')' ", System.err);
                     return false;
                 }
+            else {
+                boolean allowed = false;
+                for(int a = 0; a < Main.chars.length; a++)
+                    if(s.charAt(i) == Main.chars[a]) {
+                        allowed = true;
+                        break;
+                    }
+                if(!allowed) {
+                    error(s, i, "Unexpected Character : " + s.charAt(i), System.err);
+                    return false;
+                }
+            }
         }
         if(anzahl == 0)
             return true;
