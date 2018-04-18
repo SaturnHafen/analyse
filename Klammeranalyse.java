@@ -8,6 +8,7 @@ public class Klammeranalyse {
 
     /**
      * Prüft, ob der Eingabestring _s_ genausoviele öffnende wie schließende Klammern beinhaltet
+     *  [!!]Es wird nicht auf ungültige Zeichen geprüft, dies führt möglicherweise zu Fehlern im Rechenprozess[!!]
      * @param s Der zu analysierende String
      * @return Gleiche Anzahl
      */
@@ -15,7 +16,7 @@ public class Klammeranalyse {
         boolean result;
         System.out.println();
         System.out.println(" ---------------Klammeranalyse---------------");
-        result = klammerAnalyse(s);
+        result = klammerAnalyse(s, false);
         if(result)
             System.out.println(" > Erfolgreich");
         else
@@ -24,7 +25,26 @@ public class Klammeranalyse {
         return result;
     }
 
-    private static boolean klammerAnalyse(String s) {
+    /**
+     * Prüft, ob der Eingabestring _s_ genausoviele öffnende wie schließende Klammern beinhaltet
+     * @param s Der zu analysierende String
+     * @param forceCheck Soll der eingegebene String auf ungültige Zeichen untersucht werden
+     * @return Gleiche Anzahl
+     */
+    public static boolean analysieren(String s, boolean forceCheck) {
+        boolean result;
+        System.out.println();
+        System.out.println(" ---------------Klammeranalyse---------------");
+        result = klammerAnalyse(s, forceCheck);
+        if(result)
+            System.out.println(" > Erfolgreich");
+        else
+            System.out.println(" > Fehler");
+        System.out.println(" ------------Klammeranalyse fertig-----------");
+        return result;
+    }
+
+    private static boolean klammerAnalyse(String s, boolean forceCheck) {
         int anzahl = 0;
         for(int i = 0; i < s.length(); i++) {
             if(s.charAt(i) == Main.opening)
@@ -37,15 +57,17 @@ public class Klammeranalyse {
                     return false;
                 }
             else {
-                boolean allowed = false;
-                for(int a = 0; a < Main.chars.length; a++)
-                    if(s.charAt(i) == Main.chars[a]) {
-                        allowed = true;
-                        break;
+                if(forceCheck) {
+                    boolean allowed = false;
+                    for(int a = 0; a < Main.chars.length; a++)
+                        if(s.charAt(i) == Main.chars[a]) {
+                            allowed = true;
+                            break;
+                        }
+                    if(!allowed) {
+                        error(s, i, "Unexpected Character : " + s.charAt(i), System.err);
+                        return false;
                     }
-                if(!allowed) {
-                    error(s, i, "Unexpected Character : " + s.charAt(i), System.err);
-                    return false;
                 }
             }
         }

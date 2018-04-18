@@ -80,8 +80,10 @@ public class Berechnung
         }
         if(firstOperator)
             try {
+                rekursionsTiefe--;
                 return Double.parseDouble(string.substring(lastOperatorIndex, index));
             } catch (java.lang.NumberFormatException e) {
+                rekursionsTiefe--;
                 return 0;
             }
         else if(operatorIndex < string.length())
