@@ -74,7 +74,7 @@ public class Klammeranalyse {
         }
         if(anzahl == 0)
             return true;
-        error(s, s.length(), "Expected ')' before '' ", System.err);
+        error(s, s.length(), "Expected ')' before ''", System.err);
         return false;
     }
 
