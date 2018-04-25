@@ -40,6 +40,11 @@ public class PunktVorStrichAnalyse
                 printFormattedMessage(" <Rekursion beendet> ");
             } else if(string.charAt(index) == Main.add || string.charAt(index) == Main.subtract)
                 if(operatorFound) {
+                    if(string.charAt(index) == Main.subtract && 
+                        (string.charAt(index -1) == Main.multiply || string.charAt(index -1) == Main.divide)) {
+                        index++;
+                        continue;
+                    }
                     if(lastOperatorIndex == 0)
                         lastOperatorIndex--;
                     printFormattedMessage(" <" + string.substring(lastOperatorIndex +1, index) + "> ");
@@ -48,8 +53,10 @@ public class PunktVorStrichAnalyse
                     index += 2;
                 } else
                     lastOperatorIndex = index;
-            else if(string.charAt(index) == Main.multiply || string.charAt(index) == Main.divide)
+            else if(string.charAt(index) == Main.multiply || string.charAt(index) == Main.divide) {
                 operatorFound = true;
+                System.out.println(string.charAt(index));
+            }
             index++;
         }
         if(operatorFound) {

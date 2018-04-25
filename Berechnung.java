@@ -36,7 +36,7 @@ public class Berechnung
 
         int lastOperatorIndex = index;
         Integer operatorIndex = 0;
-        boolean firstOperator = true;;
+        boolean firstOperator = true;
 
         while(index < string.length() && string.charAt(index) != Main.closing) {
             if(string.charAt(index) == Main.opening) {
@@ -67,6 +67,10 @@ public class Berechnung
                     continue;
                 }
                 if(string.charAt(operatorIndex) != Main.closing) {
+                    if(string.charAt(index) == Main.subtract) {
+                        index++;
+                        continue;
+                    }
                     a = result;
                     b = 0;
                     try {
