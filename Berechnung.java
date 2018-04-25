@@ -67,7 +67,8 @@ public class Berechnung
                     continue;
                 }
                 if(string.charAt(operatorIndex) != Main.closing) {
-                    if(string.charAt(index) == Main.subtract) {
+                    if(string.charAt(index) == Main.subtract && 
+                        (string.charAt(index -1) == Main.multiply || string.charAt(index -1) == Main.divide)) {
                         index++;
                         continue;
                     }
