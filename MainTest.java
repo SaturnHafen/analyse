@@ -1,5 +1,3 @@
-
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -39,6 +37,14 @@ public class MainTest
 
     @Test
     public void viel() { assertEquals(362880, Main.analysierenUndBerechnen("(1*(2*(3*(4*(5*(6*(7*(8*(9)))))))))"), 0); }
+    
+    @Test
+    public void negativeZahlen() { assertEquals(-2, Main.analysierenUndBerechnen("-1-1"), 0); }
+    
+    @Test
+    public void test1() { 
+        Main.analysierenUndBerechnen("1*(2*(3*(4*(5*(6*(7*(8*(9*(10*(11*(12*(13*(14*(15*(16*(17*(18*(19*(20)))))))))))))))))))", false);
+    }
     
     //@Test
     //public void falsch() { assertEquals(3, Main.analysierenUndBerechnen("(1+2))"), 0); }

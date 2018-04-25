@@ -53,10 +53,8 @@ public class PunktVorStrichAnalyse
                     index += 2;
                 } else
                     lastOperatorIndex = index;
-            else if(string.charAt(index) == Main.multiply || string.charAt(index) == Main.divide) {
+            else if(string.charAt(index) == Main.multiply || string.charAt(index) == Main.divide)
                 operatorFound = true;
-                System.out.println(string.charAt(index));
-            }
             index++;
         }
         if(operatorFound) {

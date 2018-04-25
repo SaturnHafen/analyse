@@ -16,7 +16,7 @@ public class Main
     public static final char multiply   = '*';
     /** Das Dividierzeichen */
     public static final char divide     = '/';
-    /** Erlaubte Zeichen */
+    /** Erlaubte Zeichen [RUNDE KLAMMERN '(' ')' GEHÖREN DAZU] */
     public static final char[] chars = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/'};
 
     private Main() { }
@@ -29,16 +29,21 @@ public class Main
      * @param s Der zu analysierende String
      * @return Das Ergebnis [Punkt- vor Strichrechnung wird berücksichtigt]
      */
+    @Deprecated
     public static double analysierenUndBerechnen(String s) {
         double result;
+        boolean ok = false;
         long timeStamp = System.currentTimeMillis();
-        if(Klammeranalyse.analysieren(s)) {
+        if(ok = Klammeranalyse.analysieren(s)) {
             s = PunktVorStrichAnalyse.analysieren(s);
             result = Berechnung.berechnen(s);
         } else
             result = 0;
         System.out.println();
-        System.out.println(" > Berechnung : " + s + " = " + result);
+        if(ok)
+            System.out.println(" > Berechnung : " + s + " = " + result);
+        else
+            System.out.println(" > Berechnung : " + s + " = <[ERROR]>" );
         System.out.println(" > verstrichene Zeit : " + (System.currentTimeMillis() - timeStamp) + " ms");
         return result;
     }
@@ -53,14 +58,18 @@ public class Main
      */
     public static double analysierenUndBerechnen(String s, boolean forceCheck) {
         double result;
+        boolean ok;
         long timeStamp = System.currentTimeMillis();
-        if(Klammeranalyse.analysieren(s, forceCheck)) {
+        if(ok = Klammeranalyse.analysieren(s, forceCheck)) {
             s = PunktVorStrichAnalyse.analysieren(s);
             result = Berechnung.berechnen(s);
         } else
             result = 0;
         System.out.println();
-        System.out.println(" > Berechnung : " + s + " = " + result);
+        if(ok)
+            System.out.println(" > Berechnung : " + s + " = " + result);
+            else
+            System.out.println(" > Berechnung : " + s + " = <[ERROR]>");
         System.out.println(" > verstrichene Zeit : " + (System.currentTimeMillis() - timeStamp) + " ms");
         return result;
     }
@@ -68,18 +77,22 @@ public class Main
     /**
      * Benutzung:
      * @param args <ul>
-     *              <li> <[String] Formel> </li>
-     *              <li> <[String] Formel> <[Boolean] forceCheck> </li>
+     *              <li> <[String] Rechenausdruck> </li>
+     *              <li> <[String] Rechenausdruck> <[Boolean] forceCheck> </li>
      *             </ul>
      */
     public static void main(String[] args) {
-        if(args.length == 0) {
-            System.out.println("Formel angeben!");
-            return;
-        }
         if(args.length == 1)
-            System.out.println(analysierenUndBerechnen(args[0]));
+            System.out.println(analysierenUndBerechnen(args[0], false));
         else if(args.length == 2)
             System.out.println(analysierenUndBerechnen(args[0], Boolean.parseBoolean(args[1])));
+        else {
+            System.out.println(" Benutzung: ");
+            System.out.println("    <[String] Rechenausdruck>");
+            System.out.println("    <[String] Rechenausdruck> <[Boolean] forceCheck>");
+            System.out.println();
+            System.out.println(" Rechenausdruck : Der zu berechnende Ausdruck");
+            System.out.println(" <forceCheck : Soll der Rechenausdruck auf Fehler geprüft werden>");
+        }
     }
 }
