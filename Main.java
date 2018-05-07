@@ -16,42 +16,16 @@ public class Main
     public static final char multiply   = '*';
     /** Das Dividierzeichen */
     public static final char divide     = '/';
-    /** Erlaubte Zeichen [RUNDE KLAMMERN '(' ')' GEHÖREN DAZU] */
-    public static final char[] chars = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/'};
+    /** Erlaubte Zeichen */
+    public static final char[] chars = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', '(', ')'};
 
     private Main() { }
 
     /**
      * Analysiert den Eingabestring _s_, ob die Anzahl der öffnenden und schließenden Klammern gleich sind, </br>
      * setzt neue Klammern zur gewährleistung der Punkt- vor Strichrechnung und </br>
-     * berechnet schlussendlich das Ergebnis 
-     *  [!!]Es wird nicht auf ungültige Zeichen geprüft, dies führt möglicherweise zu Fehlern im Rechenprozess[!!]
-     * @param s Der zu analysierende String
-     * @return Das Ergebnis [Punkt- vor Strichrechnung wird berücksichtigt]
-     */
-    @Deprecated
-    public static double analysierenUndBerechnen(String s) {
-        double result;
-        boolean ok = false;
-        long timeStamp = System.currentTimeMillis();
-        if(ok = Klammeranalyse.analysieren(s)) {
-            s = PunktVorStrichAnalyse.analysieren(s);
-            result = Berechnung.berechnen(s);
-        } else
-            result = 0;
-        System.out.println();
-        if(ok)
-            System.out.println(" > Berechnung : " + s + " = " + result);
-        else
-            System.out.println(" > Berechnung : " + s + " = <[ERROR]>" );
-        System.out.println(" > verstrichene Zeit : " + (System.currentTimeMillis() - timeStamp) + " ms");
-        return result;
-    }
-
-    /**
-     * Analysiert den Eingabestring _s_, ob die Anzahl der öffnenden und schließenden Klammern gleich sind, </br>
-     * setzt neue Klammern zur gewährleistung der Punkt- vor Strichrechnung und </br>
      * berechnet schlussendlich das Ergebnis
+     * <SYNCHRON>
      * @param s Der zu analysierende String
      * @param forceCheck Soll der eingegebene String auf ungültige Zeichen untersucht werden
      * @return Das Ergebnis [Punkt- vor Strichrechnung wird berücksichtigt]
@@ -61,8 +35,8 @@ public class Main
         boolean ok;
         long timeStamp = System.currentTimeMillis();
         if(ok = Klammeranalyse.analysieren(s, forceCheck)) {
-            s = PunktVorStrichAnalyse.analysieren(s);
-            result = Berechnung.berechnen(s);
+            s = new PunktVorStrichAnalyse().analysieren(s);
+            result = new Berechnung().berechnen(s);
         } else
             result = 0;
         System.out.println();
@@ -72,6 +46,21 @@ public class Main
             System.out.println(" > Berechnung : " + s + " = <[ERROR]>");
         System.out.println(" > verstrichene Zeit : " + (System.currentTimeMillis() - timeStamp) + " ms");
         return result;
+    }
+    
+    /**
+     * Analysiert den Eingabestring _s_, ob die Anzahl der öffnenden und schließenden Klammern gleich sind, </br>
+     * setzt neue Klammern zur gewährleistung der Punkt- vor Strichrechnung und </br>
+     * berechnet schlussendlich das Ergebnis
+     * <ASYNCHRON>
+     * @param s Der zu analysierende String
+     * @param forceCheck Soll der eingegebene String auf ungültige Zeichen untersucht werden
+     * @return Das Ergebnis [Punkt- vor Strichrechnung wird berücksichtigt]
+     */
+    public static void analysierenUndBerechnen(String s, boolean forceCheck, Notifyable n) {
+        Thread t = new Thread(new Task(s, forceCheck, n));
+        t.setName("Berechnung : " + s);
+        t.start();
     }
 
     /**
@@ -83,9 +72,9 @@ public class Main
      */
     public static void main(String[] args) {
         if(args.length == 1)
-            System.out.println(analysierenUndBerechnen(args[0], false));
+            System.out.println(Main.analysierenUndBerechnen(args[0], false));
         else if(args.length == 2)
-            System.out.println(analysierenUndBerechnen(args[0], Boolean.parseBoolean(args[1])));
+            System.out.println(Main.analysierenUndBerechnen(args[0], Boolean.parseBoolean(args[1])));
         else {
             System.out.println(" Benutzung: ");
             System.out.println("    <[String] Rechenausdruck>");

@@ -5,11 +5,11 @@
  */
 public class PunktVorStrichAnalyse
 {
-    private static String string;
-    private static int index;
-    private static int rekursionsTiefe;
+    private String string;
+    private int index;
+    private int rekursionsTiefe;
 
-    private PunktVorStrichAnalyse() { }
+    public PunktVorStrichAnalyse() { }
 
     /**
      * Prüft den Eingabestring _s_ auf priorisierte Rechenzeichen ['*','/'] und 
@@ -17,7 +17,7 @@ public class PunktVorStrichAnalyse
      * @param s Der zu analysierende String
      * @return Der neue String mit Klammern
      */
-    public static String analysieren(String s) {
+    public String analysieren(String s) {
         string = s;
         index = 0;
         rekursionsTiefe = 0;
@@ -28,7 +28,7 @@ public class PunktVorStrichAnalyse
         return string;
     }
 
-    private static void rekursivPruefen() {
+    private void rekursivPruefen() {
         rekursionsTiefe++;
         int lastOperatorIndex = index -1;
         boolean operatorFound = false;
@@ -67,7 +67,7 @@ public class PunktVorStrichAnalyse
         rekursionsTiefe--;
     }
 
-    private static void klammernEinfuegen(int start, int stop) { // start inklusive, stop exklusive
+    private void klammernEinfuegen(int start, int stop) { // start inklusive, stop exklusive
         if(start > stop || stop > string.length() || start > string.length())
             return;
 
@@ -78,7 +78,7 @@ public class PunktVorStrichAnalyse
         string = anfang + Main.opening + mitte + Main.closing + ende;
     }
 
-    private static void printFormattedMessage(String msg) {
+    private void printFormattedMessage(String msg) {
         System.out.print(" > ");
         for(int i = 1; i < rekursionsTiefe; i++)
             System.out.print(" | ");

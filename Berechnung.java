@@ -5,18 +5,18 @@
  */
 public class Berechnung
 {
-    private static String string;
-    private static int index;
-    private static int rekursionsTiefe;
+    private String string;
+    private int index;
+    private int rekursionsTiefe;
 
-    private Berechnung() { return; }
+    public Berechnung() { }
 
     /**
      * Berechnet das Ergebnis aus dem Eingabestring _s_ [Klammern haben Priorität]
      * @param s Der String, der analysiert werden soll
      * @return Das Ergebnis
      */
-    public static double berechnen(String s) {
+    public double berechnen(String s) {
         string = s;
         index = 0;
         rekursionsTiefe = 0;
@@ -28,7 +28,7 @@ public class Berechnung
         return result;
     }
 
-    private static double rekursivPruefen() {
+    private double rekursivPruefen() {
         rekursionsTiefe++;
         double a = 0;
         double b = 0;
@@ -105,7 +105,7 @@ public class Berechnung
         return result;
     }
 
-    private static double berechnen(double a, double b, char operation) {
+    private double berechnen(double a, double b, char operation) {
         switch(operation) {
             case Main.add        : printFormattedMessage("" + a + ' ' + operation + ' ' + b + " = " + (a+b)); return a + b;
             case Main.subtract   : printFormattedMessage("" + a + ' ' + operation + ' ' + b + " = " + (a-b)); return a - b;
@@ -115,7 +115,7 @@ public class Berechnung
         }
     }
 
-    private static void printFormattedMessage(String msg) {
+    private void printFormattedMessage(String msg) {
         System.out.print(" > ");
         for(int i = 1; i < rekursionsTiefe; i++)
             System.out.print(" | ");
